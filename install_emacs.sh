@@ -1,8 +1,7 @@
 #!/bin/bash
 #############################################################
 # Install latest stable Emacs
-# Author: Vincent Zhang <seagle0128@gmail.com>
-# URL: https://github.com/seagle0128/dotfiles
+# Author: Giancarlos Castillo <gc.c@outlook.com>
 #############################################################
 
 # Get OS name

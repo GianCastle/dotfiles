@@ -1,8 +1,7 @@
 #!/bin/bash
 #############################################################
 # Install language servers.
-# Author: Vincent Zhang <seagle0128@gmail.com>
-# URL: https://github.com/seagle0128/dotfiles
+# Author: Giancarlos Castillo <gc.c@outlook.com>
 #############################################################
 
 # Language servers
