@@ -1,0 +1,11 @@
+# -*- mode: gitconfig -*-
+[include]
+	path = ~/.gitconfig_global
+[user]
+	name = Giancarlos Castillo
+	email = gc.c@outlook.com
+[credential]
+	helper = osxkeychain
+[github]
+	user =
+	oauth-token =

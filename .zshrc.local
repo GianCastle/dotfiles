@@ -1,0 +1,140 @@
+# Local configurations -*- mode: sh -*-
+
+# Show system information
+if command -v neofetch >/dev/null 2>&1; then
+    neofetch
+fi
+
+# Plugins
+# antigen bundle docker
+# antigen bundle docker-compose
+# antigen bundle docker-machine
+# antigen bundle golang
+# antigen bundle python
+# antigen bundle ruby
+
+# antigen bundle archlinux
+# antigen bundle ubuntu
+
+# Theme
+if [ -n "$INSIDE_EMACS" ]; then
+    DISABLE_AUTO_TITLE="true"
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray,underline'
+    # antigen theme dst            # ys, dst, wedisagree, robbyrussell
+else
+    # antigen theme steeef      # ys, dst, steeef, wedisagree, robbyrussell
+    # antigen theme danihodovic/steeef
+    # antigen theme seagle0128/bullet-train.zsh
+    # antigen theme simnalamburt/shellder
+    # antigen theme denysdovhan/spaceship-prompt spaceship
+
+    # Powerful theme (require powerline fonts)
+    # cargo install powerline-rs
+    # go get -u github.com/justjanne/powerline-go
+    function powerline_precmd() {
+        if command -v powerline-rs >/dev/null 2>&1; then
+            PS1="$(powerline-rs --shell zsh $?)"
+        elif command -v powerline-go >/dev/null 2>&1; then
+            PS1="$(powerline-go -error $? -shell zsh)"
+        fi
+    }
+
+    function install_powerline_precmd() {
+        for s in "${precmd_functions[@]}"; do
+            if [ "$s" = "powerline_precmd" ]; then
+                return
+            fi
+        done
+        precmd_functions+=(powerline_precmd)
+    }
+
+    if [ "$TERM" != "linux" ]; then
+        install_powerline_precmd
+    fi
+fi
+
+# Env
+# export EDITOR=vim
+# export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+
+# Aliases
+
+# Proxy
+PROXY=http://127.0.0.1:8001     # 1087
+PROXY2=http://127.0.0.1:8123
+SOCK_PROXY=socks5://127.0.0.1:1081 # 1086
+NO_PROXY=10.*.*.*,192.168.*.*,*.local,localhost,127.0.0.1
+alias set_polipo_proxy='ps -ef | grep polipo | grep -v grep; [ $? -ne 0 ] && polipo socksParentProxy=192.168.31.1:1082 &'
+alias showproxy='echo "proxy=$http_proxy"'
+alias setproxy='export http_proxy=$PROXY; export https_proxy=$PROXY; export no_proxy=$NO_PROXY; showproxy'
+alias setproxy2='set_polipo_proxy; export http_proxy=$PROXY2; export https_proxy=$PROXY2; export no_proxy=$NO_PROXY; showproxy'
+alias unsetproxy='export http_proxy=; export https_proxy=; export no_proxy=; showproxy'
+alias unsetproxy2='killall polipo;unsetproxy'
+alias toggleproxy='if [ -n "$http_proxy" ]; then unsetproxy; else setproxy; fi'
+alias toggleproxy2='if [ -n "$http_proxy" ]; then unsetproxy2; else setproxy2; fi'
+alias set_sock_proxy='export http_proxy=$SOCK_PROXY; export https_proxy=$SOCK_PROXY; export no_proxy=$NO_PROXY; showproxy'
+alias unset_sock_proxy=unsetproxy
+alias toggle_sock_proxy='if [ -n "$http_proxy" ]; then unset_sock_proxy; else set_sock_proxy; fi'
+
+# Homebrew
+if [[ $OSTYPE == darwin* ]]; then
+    # export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+    function set_homebrew_mirror() {
+        export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+        cd "$(brew --repo)"
+        git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+        cd - >/dev/null
+
+        cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-core
+        git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+        cd - >/dev/null
+
+        cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
+        git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
+        cd - >/dev/null
+
+        brew update
+    }
+
+    function reset_homebrew() {
+        export HOMEBREW_BOTTLE_DOMAIN=
+
+        cd "$(brew --repo)"
+        git remote set-url origin https://github.com/Homebrew/brew.git
+        cd - >/dev/null
+
+        cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-core
+        git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+        cd - >/dev/null
+
+        cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
+        git remote set-url origin https://github.com/Homebrew/homebrew-cask
+        cd - >/dev/null
+
+        brew update
+    }
+fi
+
+# Golang
+if command -v go >/dev/null 2>&1; then
+    function gocomplete() {
+        antigen bundle golang
+    }
+
+    function goclean() {
+        go clean -i -n $1
+        go clean -i $1
+        rm -rf $GOPATH/src/$1
+        if [ -d $GOPATH/pkg/${sysOS:l}_amd64/$1 ]; then
+            rm -rf $GOPATH/pkg/${sysOS:l}_amd64/$1;
+        fi
+    }
+
+    function goclean_test() {
+        go clean -i -n $1
+        tree -L 1 $GOPATH/src/$1
+        tree -L 1 $GOPATH/pkg/${sysOS:l}_amd64/$1
+    }
+fi
