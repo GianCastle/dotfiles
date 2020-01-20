@@ -7,51 +7,29 @@
 # Cask applications
 apps=(
     cheatsheet
-    clipy
     ezip          # compress & extract
-    fliqlo        # Screen Saver
-    hyperswitch
     iterm2
     keepingyouawake
     keycastr      # Show keys on the screen
     licecap       # Recording screen as gif
     mounty        # Mounty for NTFS read/write
     mos           # Smooth and reverse scroll. Alternative: scroll-reverser
-    shadowsocksx-ng-r
 
-    iina          # Media player
+    setapp
+
     firefox
     google-chrome
+
     # karabiner-elements # karabiner: Keboard remapping
     # netspot       # Wifi signal analysis and scanner
-    osxfuse
-    veracrypt
-    vox2           # Music player
-    sogouinput
-
-    # Audio
-    # sound-siphon  # 2.0.2
-    # background-music
-    soundflower
-    soundflowerbed
 
     # Development
-    # java          # optional
-    # docker        # optional
+    java          # optional
+    docker        # optional
     emacs
     fork            # Git Client: gitkraken, sourcetree
     typora        # Markdown editor
     visual-studio-code
-
-    # Utilities
-    # acrobat-reader
-    aliwangwang
-    aria2gui
-    baidunetdisk
-    neteasemusic
-    # skype-for-business
-    thunder
-    yyets
 )
 
 # Use colors, but only if connected to a terminal, and that terminal
