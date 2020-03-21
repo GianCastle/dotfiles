@@ -1,4 +1,5 @@
-# Dotfiles 
+# Dotfiles
+
 #### Configurations for development environment on GNU Linux and  macOS.
 
 ### Prerequisites ⚠️
@@ -12,6 +13,6 @@
 
 If wget is installed, you can run it with wget
 
-```sh -c "$(wget https://github.com/seagle0128/dotfiles/raw/master/install.sh -O -)"```
+```sh -c "$(wget https://github.com/GianCastle/dotfiles/raw/master/install.sh -O -)"```
 
 ## ENJOY!

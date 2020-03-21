@@ -37,9 +37,6 @@ if command -v pip >/dev/null 2>&1; then
 fi
 
 if command -v pip >/dev/null 2>&1; then
-    printf "${BLUE} ➜  Installing Ruby language server...${NORMAL}\n"
-    sudo gem install solargraph
-
     printf "${BLUE} ➜  Installing Javascript/Typescript language server...${NORMAL}\n"
     sudo npm i -g javascript-typescript-langserver
 

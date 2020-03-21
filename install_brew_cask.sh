@@ -9,27 +9,22 @@ apps=(
     cheatsheet
     ezip          # compress & extract
     iterm2
-    keepingyouawake
-    keycastr      # Show keys on the screen
     licecap       # Recording screen as gif
     mounty        # Mounty for NTFS read/write
-    mos           # Smooth and reverse scroll. Alternative: scroll-reverser
 
-    setapp
-
+    #browsers
     firefox
+    firefox-developer-edition
     google-chrome
-
-    # karabiner-elements # karabiner: Keboard remapping
-    # netspot       # Wifi signal analysis and scanner
+    netspot       # Wifi signal analysis and scanner
 
     # Development
-    java          # optional
-    docker        # optional
+    java
+    docker
     emacs
     fork            # Git Client: gitkraken, sourcetree
     typora        # Markdown editor
-    visual-studio-code
+    visual-studio-code 
 )
 
 # Use colors, but only if connected to a terminal, and that terminal

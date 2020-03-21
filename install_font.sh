@@ -79,15 +79,9 @@ function install {
 
         fonts=(
             font-source-code-pro
-            # font-dejavu-sans
             font-inconsolata
             font-hack-nerd-font
-
             font-symbola
-
-            font-wenquanyi-micro-hei
-            font-wenquanyi-micro-hei-lite
-            font-wenquanyi-zen-hei
         )
 
         if [ ! -f "${font_dir}/SourceCodePro-Regular.otf" ]; then
@@ -115,9 +109,6 @@ function install {
             fonts=(
                 fonts-hack-ttf
                 fonts-powerline
-                fonts-wqy-microhei
-                fonts-wqy-zenhei
-                # ttf-mscorefonts-installer
             )
 
             for f in ${fonts[@]}; do
