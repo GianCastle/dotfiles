@@ -1,5 +1,7 @@
 .idea
 .DS_Store
+cache
+win_cache
 *.bak
 *.log
 .markdown-preview.html
