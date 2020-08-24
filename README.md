@@ -4,7 +4,7 @@
 
 ### Prerequisites ⚠️
 
-- Linux, MacOS
+- Linux, MacOS or Windows (yeah, you welcome)
 - Git, zsh, curl
 - Emacs
 
